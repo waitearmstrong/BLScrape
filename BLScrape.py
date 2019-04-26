@@ -21,12 +21,13 @@ for link in links:
     soupData = BeautifulSoup(requests.get(link).content,'html.parser')
     try:
         dataTable = soupData.find('tbody')
+        stateName = ""
         rOne = dataTable.find_all('tr')[1]
         laborForce = rOne.find_all('span')[-2].text.strip("(p)")
         rTwo = dataTable.find_all('tr')[4]
         unemRate = rTwo.find_all('span')[-2].text.strip("(p)")
-        print(laborForce)
-        print("Current unemployment rate for WV is" + unemRate)
+        print("Current Civilian Labor Force rate for " + stateName + " is " + laborForce)
+        print("Current Unemployment rate for " + stateName + " is " + unemRate)
     except:
         print("Value not valid")
         pass
